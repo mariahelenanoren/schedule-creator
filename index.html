@@ -11,22 +11,30 @@
 
     <button id="new-activity-button">Schedule a new activity</button>
 
-    <div id="inputs" style="display: none;">
-        <label for="subject">Activity name</label>
-        <input type="text" name="subject" id="subject">
+    <form id="activity-form" style="display: none;">
+        <div class="subject">
+            <label for="subject">Activity name</label>
+            <input type="text" name="subject" id="subject"/>
+        </div>
 
-        <label for="description">Description</label>
-        <input type="text" name="description" id="description">
+        <div class="description">
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description">
+        </div>
 
-        <label for="location">Location</label>
-        <input type="text" name="location" id="location">
+        <div class="location">
+            <label for="location">Location</label>
+            <input type="text" name="location" id="location">
+        </div>
         
-        <label for="time">Description</label>
-        <input type="datetime-local" name="time" id="time">
+        <div class="time">
+            <label for="time">Description</label>
+            <input type="datetime-local" name="time" id="time"/>
+        </div>
         
         <label for="submit"></label>
         <button id="submit" type="submit">Create a new activity</button>
-    </div>
+    </form>
     <div id="activity-container"></div>
     
 </body>
