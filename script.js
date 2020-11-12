@@ -5,6 +5,9 @@ function startFunctions() {
     setEventListeners();
 }
 
+/**
+ * Sets eventlisteners
+ */
 function setEventListeners() {
     const activityButton = document.querySelector("#new-activity-button"); 
     const submitButton = document.querySelector("#submit");
@@ -20,10 +23,14 @@ function setEventListeners() {
             getInputValues();
             openAndCloseactivityForm();
         }
+        /* Prevents window from reloading on submit */
         event.preventDefault() 
     });
 }
 
+/**
+ * Shows alerts if required input fields are not filled in
+ */
 function showAlert() {
 
     const subjectAlert = document.createElement("p")
@@ -63,6 +70,9 @@ function openAndCloseactivityForm() {
 
 }
 
+/**
+ * Gets input values and makes them into objects
+ */
 function getInputValues() {
     const subjectInput = document.querySelector("#subject")
     const descriptionInput = document.querySelector("#description")
@@ -80,12 +90,13 @@ function getInputValues() {
     Object.defineProperty(object, "id", { value: uniqueId });
 
     createDocumentElements(object);
-
     saveInputToLocalStorage(object);
-    console.log()
 }
 
-
+/**
+ * Saves list of objects to localStorage
+ * @param {string} input 
+ */
 function saveInputToLocalStorage(input) {
     const allEntries = []
 
@@ -105,6 +116,9 @@ function saveInputToLocalStorage(input) {
     }
 }
 
+/**
+ * Fetches list of objects saved in localStorage
+ */
 function getLocalStorage() {
     const activityArrayLS = localStorage.getItem("activity")
     const activityArray = JSON.parse(activityArrayLS)
@@ -115,6 +129,11 @@ function getLocalStorage() {
     }
 }
 
+
+/**
+ * Creates a div with list of object values and adds to page
+ * @param {Object} object
+ */
 function createDocumentElements(object) {
     const container = document.querySelector("#container");
     const div = document.createElement("div");
@@ -137,12 +156,18 @@ function createDocumentElements(object) {
     }
 }
 
+/**
+ * Removes the clicked button's parent div from page and corresponding object from localStorage
+ * @param {MouseEvent} event - click event
+ */
 function deleteElement(event) {
     const allDeleteButtons = document.querySelectorAll(".delete-button")
 
     for (let i = 0; i < allDeleteButtons.length; i++) {
         if (event.target === allDeleteButtons[i]) {
-            allDeleteButtons[i].parentElement.parentElement.removeChild(allDeleteButtons[i].parentElement)
+
+            const container = document.querySelector("#container")
+            container.removeChild(allDeleteButtons[i].parentElement)
 
             const allEntriesArrayLS = localStorage.getItem("activity");
             const allEntriesArray = JSON.parse(allEntriesArrayLS)
