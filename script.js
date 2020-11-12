@@ -119,8 +119,13 @@ function createDocumentElements(object) {
     const container = document.querySelector("#container");
     const div = document.createElement("div");
     const ul = document.createElement("ul");
+    const deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "Remove";
+    deleteButton.setAttribute("class", "delete-button")
+
     container.append(div);
     div.append(ul);
+    div.append(deleteButton);
     
     for (value of Object.values(object)) {
         if (value) {
@@ -130,3 +135,20 @@ function createDocumentElements(object) {
         }
     }
 }
+
+/*function deleteElement(index) {
+    console.log(index)
+
+    const allEntriesArrayLS = localStorage.getItem("activity")
+    const allEntriesArray = JSON.parse(allEntriesArrayLS)
+    console.log(allEntriesArray[i])*/
+    /*const allEntries = []
+
+    const oldEntriesLS = localStorage.getItem("activity")
+        const oldEntries = JSON.parse(oldEntriesLS)
+        for (each of oldEntries) {
+            allEntries.push(each)
+        }
+        allEntries.pop(element)
+        localStorage.setItem("activity", JSON.stringify(allEntries))
+}*/
