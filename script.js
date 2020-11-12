@@ -1,9 +1,8 @@
 window.onload = startFunctions;
 
 function startFunctions() {
-    setEventListeners();
     getLocalStorage();
-    console.log(localStorage.getItem("activity"))
+    setEventListeners();
 }
 
 function setEventListeners() {
@@ -13,7 +12,7 @@ function setEventListeners() {
     const timeInput = document.querySelector("#time")
 
     activityButton.addEventListener("click", openAndCloseactivityForm);
-    submitButton.addEventListener("click", function(e) {
+    submitButton.addEventListener("click", function(event) {
         if (!subjectInput.value || !timeInput.value) {
             showAlert();
         }
@@ -21,7 +20,7 @@ function setEventListeners() {
             getInputValues();
             openAndCloseactivityForm();
         }
-        e.preventDefault() 
+        event.preventDefault() 
     });
 }
 
@@ -83,6 +82,7 @@ function getInputValues() {
     createDocumentElements(object);
 
     saveInputToLocalStorage(object);
+    console.log()
 }
 
 
@@ -121,7 +121,8 @@ function createDocumentElements(object) {
     const ul = document.createElement("ul");
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML = "Remove";
-    deleteButton.setAttribute("class", "delete-button")
+    deleteButton.setAttribute("class", "delete-button");
+    deleteButton.addEventListener("click", deleteElement, deleteButton)
 
     container.append(div);
     div.append(ul);
@@ -136,19 +137,17 @@ function createDocumentElements(object) {
     }
 }
 
-/*function deleteElement(index) {
-    console.log(index)
+function deleteElement(event) {
+    const allDeleteButtons = document.querySelectorAll(".delete-button")
 
-    const allEntriesArrayLS = localStorage.getItem("activity")
-    const allEntriesArray = JSON.parse(allEntriesArrayLS)
-    console.log(allEntriesArray[i])*/
-    /*const allEntries = []
+    for (let i = 0; i < allDeleteButtons.length; i++) {
+        if (event.target === allDeleteButtons[i]) {
+            allDeleteButtons[i].parentElement.parentElement.removeChild(allDeleteButtons[i].parentElement)
 
-    const oldEntriesLS = localStorage.getItem("activity")
-        const oldEntries = JSON.parse(oldEntriesLS)
-        for (each of oldEntries) {
-            allEntries.push(each)
+            const allEntriesArrayLS = localStorage.getItem("activity");
+            const allEntriesArray = JSON.parse(allEntriesArrayLS)
+            allEntriesArray.splice(i, 1)
+            localStorage.setItem("activity", JSON.stringify(allEntriesArray))
         }
-        allEntries.pop(element)
-        localStorage.setItem("activity", JSON.stringify(allEntries))
-}*/
+    }
+}
