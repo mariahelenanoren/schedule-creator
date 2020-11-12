@@ -2,7 +2,8 @@ window.onload = startFunctions;
 
 function startFunctions() {
     setEventListeners();
-    createLocalStorageElements();
+    getLocalStorage();
+    console.log(localStorage.getItem("activity"))
 }
 
 function setEventListeners() {
@@ -11,19 +12,16 @@ function setEventListeners() {
     const subjectInput = document.querySelector("#subject")
     const timeInput = document.querySelector("#time")
 
-    const activityArray = [];
-
     activityButton.addEventListener("click", openAndCloseactivityForm);
     submitButton.addEventListener("click", function(e) {
-        /*if (!subjectInput.value || !timeInput.value) {
+        if (!subjectInput.value || !timeInput.value) {
             showAlert();
         }
         else {
             getInputValues();
             openAndCloseactivityForm();
-        }  */
-        e.preventDefault()
-        getInputValues(activityArray); 
+        }
+        e.preventDefault() 
     });
 }
 
@@ -66,27 +64,15 @@ function openAndCloseactivityForm() {
 
 }
 
-/*function getInputValues() {
-    const inputs = document.querySelectorAll("input");
-    const inputList = [];
-
-    for (i = 0; i < inputs.length; i++) {
-        inputList.push(inputs[i].value);
-    }
-
-    saveInputValues(inputList);
-}*/
-
-function getInputValues(activityArray) {
+function getInputValues() {
     const subjectInput = document.querySelector("#subject")
     const descriptionInput = document.querySelector("#description")
     const locationInput = document.querySelector("#location")
     const timeInput = document.querySelector("#time")
     const uniqueId = Date.now()
 
-    var object = {
+    var object = {}
 
-    }
     object["activity"] = subjectInput.value
     object["description"] = descriptionInput.value
     object["location"] = locationInput.value
@@ -94,65 +80,53 @@ function getInputValues(activityArray) {
 
     Object.defineProperty(object, "id", { value: uniqueId });
 
-    activityArray.push(object)
-    console.log(activityArray)
+    createDocumentElements(object);
 
-    const activityStorageInput = JSON.stringify(activityArray)
-    localStorage.setItem("activity", activityStorageInput)
-
+    saveInputToLocalStorage(object);
 }
 
 
-function saveInputValues(inputList) {
+function saveInputToLocalStorage(input) {
+    const allEntries = []
 
+    if (!localStorage.getItem("activity")) {
+        allEntries.push(input)
+        localStorage.setItem("activity", JSON.stringify(allEntries))
+        console.log("no")
+    }
+    else {
+        const oldEntriesLS = localStorage.getItem("activity")
+        const oldEntries = JSON.parse(oldEntriesLS)
+        for (each of oldEntries) {
+            allEntries.push(each)
+        }
+        allEntries.push(input)
+        localStorage.setItem("activity", JSON.stringify(allEntries))
+    }
 }
 
-
-/*function saveInputValues(inputList) {
-    const newDiv = document.createElement("div");
-    const uniqueId = Date.now();
-    newDiv.setAttribute("id", uniqueId);
-
-    const inputUl = document.createElement("ul");
-    for (i = 0; i < inputList.length; i++) {
-        if (inputList[i].length >= 1) {
-            const li = document.createElement("li");
-            li.innerHTML = inputList[i];
-            inputUl.appendChild(li);
+function getLocalStorage() {
+    const activityArrayLS = localStorage.getItem("activity")
+    const activityArray = JSON.parse(activityArrayLS)
+    if (localStorage.getItem("activity")) {
+        for (each of activityArray) {
+            createDocumentElements(each)
         }
     }
-    newDiv.appendChild(inputUl)
-
-    localStorage.setItem("savedActivity", inputUl)
-    const removeButton = document.createElement("button");
-    removeButton.setAttribute("class", "remove-button")
-    removeButton.innerHTML = "Remove activity"
-
-    newDiv.appendChild(removeButton)
-
-    const inputContainer = document.querySelector("#activity-container");
-    inputContainer.appendChild(newDiv)
-
-    removeButton.addEventListener("click", () => removeElement(newDiv))
-}*/
-
-/*function removeActivity(button) {
-    button.path[2].removeChild(button.path[1]);
 }
 
-function removeElement(element) {
-    const elementId = document.getElementById(element.id)
-    console.log(element + " " + elementId)
-    const parentElement = elementId.parentElement
-    console.log(parentElement.removeChild(elementId))
-}*/
-
-
-function createLocalStorageElements() {
-    const activityStorageOutput = localStorage.getItem("activity")
-
-    const activity = JSON.parse(activityStorageOutput)
-
-    console.log(activity)
-
+function createDocumentElements(object) {
+    const container = document.querySelector("#container");
+    const div = document.createElement("div");
+    const ul = document.createElement("ul");
+    container.append(div);
+    div.append(ul);
+    
+    for (value of Object.values(object)) {
+        if (value) {
+            const li = document.createElement("li")
+            li.innerHTML = value;
+            ul.append(li)
+        }
+    }
 }
