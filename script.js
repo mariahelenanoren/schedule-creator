@@ -185,17 +185,17 @@ function deleteElement(event) {
 function saveCompletedElement(completedTask) {
     const allCompletedTasks = []
 
-    if (!localStorage.getItem("completedTasks")) {
+    if (!localStorage.getItem("completed-tasks")) {
         allCompletedTasks.push(completedTask)
-        localStorage.setItem("completedTasks", JSON.stringify(allCompletedTasks))
+        localStorage.setItem("completed-tasks", JSON.stringify(allCompletedTasks))
     }
     else {
-        const oldTasksLS = localStorage.getItem("completedTasks")
+        const oldTasksLS = localStorage.getItem("completed-tasks")
         const oldTasks = JSON.parse(oldTasksLS)
         for (each of oldTasks) {
             allCompletedTasks.push(each)
         }
         allCompletedTasks.push(completedTask)
-        localStorage.setItem("completedTasks", JSON.stringify(allCompletedTasks))
+        localStorage.setItem("completed-tasks", JSON.stringify(allCompletedTasks))
     }
 }
