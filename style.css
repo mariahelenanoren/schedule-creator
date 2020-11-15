@@ -7,6 +7,8 @@ html, body {
     height: 100%;
     width: 100%;
     font-family: 'Inter', Helvetica, Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {   
@@ -18,22 +20,24 @@ body {
     background: linear-gradient(to bottom, rgba(255,246,235,1) 0%, rgba(255,246,235,1) 25%, rgba(177,241,218,1) 100%);
 }
 
-body p {
-    color: #1e1e1e;
-}
-
 main {
     height: calc(100% - 5rem);
     padding: 1.5rem 1.5rem 0 1.5rem;
+    overflow-y: scroll;
 }
 
 .new-task {
-    padding: 1.2rem 2rem;
+    padding: 1rem 1.5rem;
     border: none;
     border-radius: 0.8rem;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    font-weight: 600;
     color: white;
     background-color: #00CEA9;
+}
+
+h2 {
+    color: #1e1e1e;
 }
 
 .container {
@@ -41,12 +45,13 @@ main {
     grid-template-rows: auto;
     column-gap: 1.5rem;
     row-gap: 1.5rem;
+    margin: 2rem 0;
 }
 
 .container div {
     display: grid;
-    grid-template-columns: 1fr 3rem;
-    grid-template-rows: 2rem 1fr 2rem;
+    grid-template-columns: 1fr 3.5rem;
+    grid-template-rows: 2.5rem 1fr 2.5rem;
     grid-template-areas: 
         "ul complete"
         "ul ."
@@ -58,19 +63,44 @@ main {
 
 .container ul {
     list-style: none;
-    margin: 1rem;
+    margin: 0.8rem 1.5rem;
     padding: 0;
     grid-area: ul;
 }
 
 .container li:nth-child(1) {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 700;
+}
+
+.container li:nth-child(3)::before {
+    font-family: "Material Icons";
+    font-size: 1.5rem;
+    content: "location_on";
+    margin-right: 0.5rem;
+    color: #00CEA9;
+}
+
+.container li:nth-child(4)::before {
+    font-family: "Material Icons";
+    font-size: 1.5rem;
+    content: "notifications_on";
+    margin-right: 0.5rem;
+    color: #00CEA9;
 }
 
 .container li {
-    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    margin: 0.6rem 0;
+    font-size: 1rem;
     font-weight: 500;
+    color: #1e1e1e;
+}
+
+.element-button {
+    margin: 0;
+    font-size: 2rem;
 }
 
 .complete-button {
@@ -82,6 +112,7 @@ main {
 }
 
 .delete-button {
+    display: flex;
     border: none;
     color: #1e1e1e;
     background-color: transparent;
@@ -106,6 +137,6 @@ h1 {
 
 .menu-inner span {
     font-size: 3rem;
-    margin-left: 1rem;
+    margin-left: 1.5rem;
     color: #1e1e1e;
 }
