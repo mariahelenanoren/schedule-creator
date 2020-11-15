@@ -140,12 +140,17 @@ function createDocumentElements(object) {
     const ul = document.createElement("ul");
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML = "Remove";
-    deleteButton.setAttribute("class", "delete-button");
+    deleteButton.setAttribute("class", "element-button");
     deleteButton.addEventListener("click", deleteElement, deleteButton)
+    const completeButton = document.createElement("button");
+    completeButton.innerHTML = "Complete";
+    completeButton.setAttribute("class", "element-button complete-button");
+    completeButton.addEventListener("click", deleteElement, completeButton)
 
     container.append(div);
     div.append(ul);
     div.append(deleteButton);
+    div.append(completeButton);
     
     for (value of Object.values(object)) {
         if (value) {
@@ -160,12 +165,11 @@ function createDocumentElements(object) {
  * Removes the clicked button's parent div from page and corresponding object from localStorage
  * @param {MouseEvent} event - click event
  */
-function deleteElement(event) {
+/*function deleteElement(event) {
     const allDeleteButtons = document.querySelectorAll(".delete-button")
 
     for (let i = 0; i < allDeleteButtons.length; i++) {
         if (event.target === allDeleteButtons[i]) {
-
             const container = document.querySelector("#container")
             container.removeChild(allDeleteButtons[i].parentElement)
 
@@ -174,5 +178,55 @@ function deleteElement(event) {
             allEntriesArray.splice(i, 1)
             localStorage.setItem("activity", JSON.stringify(allEntriesArray))
         }
+    }
+}*/
+
+/**
+ * Removes the clicked button's parent div from page and corresponding object from localStorage
+ * @param {MouseEvent} event - click event
+ */
+function deleteElement(event) {
+    const allElementButtons = document.querySelectorAll(".element-button")
+
+    for (let i = 0; i < allElementButtons.length; i++) {
+        if (event.target === allElementButtons[i]) {
+            const container = document.querySelector("#container")
+            const elementIndex = Math.ceil((i / 2) - 1)
+            container.removeChild(allElementButtons[i].parentElement)
+
+            const allEntriesArrayLS = localStorage.getItem("activity");
+            const allEntriesArray = JSON.parse(allEntriesArrayLS)
+            const removedTask = allEntriesArray[elementIndex]
+            allEntriesArray.splice(elementIndex, 1)
+            localStorage.setItem("activity", JSON.stringify(allEntriesArray))
+
+            if (event.target.classList.contains("complete-button")) {
+                saveCompletedElement(removedTask)
+            }
+        }
+    }
+}
+
+/**
+ * Saves the completed tasks in an array in localStorage
+ * @param {Object} completedTask 
+ */
+function saveCompletedElement(completedTask) {
+    console.log("completed task:" + completedTask)
+    const allCompletedTasks = []
+
+    if (!localStorage.getItem("completedTasks")) {
+        allCompletedTasks.push(completedTask)
+        localStorage.setItem("completedTasks", JSON.stringify(allCompletedTasks))
+        console.log("no")
+    }
+    else {
+        const oldTasksLS = localStorage.getItem("completedTasks")
+        const oldTasks = JSON.parse(oldTasksLS)
+        for (each of oldTasks) {
+            allCompletedTasks.push(each)
+        }
+        allCompletedTasks.push(completedTask)
+        localStorage.setItem("completedTasks", JSON.stringify(allCompletedTasks))
     }
 }
