@@ -9,14 +9,13 @@ function startFunctions() {
  * Sets eventlisteners
  */
 function setEventListeners() {
-    const activityButton = document.querySelector("#new-activity-button"); 
+    const newTaskButton = document.querySelector("#new-task"); 
     const submitButton = document.querySelector("#submit");
-    const subjectInput = document.querySelector("#subject")
-    const timeInput = document.querySelector("#time")
+    const taskInput = document.querySelector("#task")
 
-    activityButton.addEventListener("click", openAndCloseactivityForm);
+    newTaskButton.addEventListener("click", openAndCloseactivityForm);
     submitButton.addEventListener("click", function(event) {
-        if (!subjectInput.value || !timeInput.value) {
+        if (!taskInput.value) {
             showAlert();
         }
         else {
@@ -33,35 +32,22 @@ function setEventListeners() {
  */
 function showAlert() {
 
-    const subjectAlert = document.createElement("p")
-    subjectAlert.innerHTML = "Please fill in an activity name"
-    subjectAlert.setAttribute("id", "subjectAlert")
-    const subjectContainer = document.querySelector(".subject")
-    const subjectInput = document.querySelector("#subject")
+    const taskAlert = document.createElement("p")
+    taskAlert.innerHTML = "Please fill in a task"
+    taskAlert.setAttribute("id", "taskAlert")
+    const taskContainer = document.querySelector(".subject")
+    const taskInput = document.querySelector("#subject")
 
-    const timeAlert = document.createElement("p")
-    timeAlert.innerHTML = "Please fill in a time"
-    timeAlert.setAttribute("id", "timeAlert")
-    const timeContainer = document.querySelector(".time")
-    const timeInput = document.querySelector("#time")
-
-    if (!document.querySelector("#subjectAlert") && !subjectInput.value) {
-        subjectContainer.appendChild(subjectAlert)
+    if (!document.querySelector("#taskAlert") && !taskInput.value) {
+        taskContainer.appendChild(taskAlert)
     } 
-    else if (document.querySelector("#subjectAlert") && subjectInput.value) {
-        removeElement(subjectAlert)
-    }
-
-    if (!document.querySelector("#timeAlert") && !timeInput.value) {
-        timeContainer.appendChild(timeAlert)
-    } 
-    else if (document.querySelector("#timeAlert") && timeInput.value) {
-        removeElement(timeAlert)
+    else if (document.querySelector("#taskAlert") && taskInput.value) {
+        removeElement(taskAlert)
     }
 }
 
 function openAndCloseactivityForm() {
-    const activityForm = document.querySelector("#activity-form");
+    const activityForm = document.querySelector("#task-form");
     if (activityForm.style.display == "none") {
         activityForm.style.display = "unset";
     } else {
@@ -74,20 +60,20 @@ function openAndCloseactivityForm() {
  * Gets input values and makes them into objects
  */
 function getInputValues() {
-    const subjectInput = document.querySelector("#subject")
+    const taskInput = document.querySelector("#task")
     const descriptionInput = document.querySelector("#description")
     const locationInput = document.querySelector("#location")
     const timeInput = document.querySelector("#time")
-    const uniqueId = Date.now()
+    //const uniqueId = Date.now()
 
     var object = {}
 
-    object["activity"] = subjectInput.value
+    object["activity"] = taskInput.value
     object["description"] = descriptionInput.value
     object["location"] = locationInput.value
     object["time"] = timeInput.value
 
-    Object.defineProperty(object, "id", { value: uniqueId });
+    //Object.defineProperty(object, "id", { value: uniqueId });
 
     createDocumentElements(object);
     saveInputToLocalStorage(object);
@@ -98,21 +84,20 @@ function getInputValues() {
  * @param {string} input 
  */
 function saveInputToLocalStorage(input) {
-    const allEntries = []
+    const allTasks = []
 
     if (!localStorage.getItem("activity")) {
-        allEntries.push(input)
-        localStorage.setItem("activity", JSON.stringify(allEntries))
-        console.log("no")
+        allTasks.push(input)
+        localStorage.setItem("activity", JSON.stringify(allTasks))
     }
     else {
-        const oldEntriesLS = localStorage.getItem("activity")
-        const oldEntries = JSON.parse(oldEntriesLS)
-        for (each of oldEntries) {
-            allEntries.push(each)
+        const oldTasksLS = localStorage.getItem("activity")
+        const oldTasks = JSON.parse(oldTasksLS)
+        for (each of oldTasks) {
+            allTasks.push(each)
         }
-        allEntries.push(input)
-        localStorage.setItem("activity", JSON.stringify(allEntries))
+        allTasks.push(input)
+        localStorage.setItem("activity", JSON.stringify(allTasks))
     }
 }
 
@@ -120,10 +105,10 @@ function saveInputToLocalStorage(input) {
  * Fetches list of objects saved in localStorage
  */
 function getLocalStorage() {
-    const activityArrayLS = localStorage.getItem("activity")
-    const activityArray = JSON.parse(activityArrayLS)
+    const allTasksLS = localStorage.getItem("activity")
+    const allTasks = JSON.parse(allTasksLS)
     if (localStorage.getItem("activity")) {
-        for (each of activityArray) {
+        for (each of allTasks) {
             createDocumentElements(each)
         }
     }
@@ -138,10 +123,12 @@ function createDocumentElements(object) {
     const container = document.querySelector("#container");
     const div = document.createElement("div");
     const ul = document.createElement("ul");
+
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML = "Remove";
-    deleteButton.setAttribute("class", "element-button");
-    deleteButton.addEventListener("click", deleteElement, deleteButton)
+    deleteButton.setAttribute("class", "element-button delete-button");
+    deleteButton.addEventListener("click", deleteElement, deleteButton);
+
     const completeButton = document.createElement("button");
     completeButton.innerHTML = "Complete";
     completeButton.setAttribute("class", "element-button complete-button");
@@ -165,40 +152,24 @@ function createDocumentElements(object) {
  * Removes the clicked button's parent div from page and corresponding object from localStorage
  * @param {MouseEvent} event - click event
  */
-/*function deleteElement(event) {
-    const allDeleteButtons = document.querySelectorAll(".delete-button")
-
-    for (let i = 0; i < allDeleteButtons.length; i++) {
-        if (event.target === allDeleteButtons[i]) {
-            const container = document.querySelector("#container")
-            container.removeChild(allDeleteButtons[i].parentElement)
-
-            const allEntriesArrayLS = localStorage.getItem("activity");
-            const allEntriesArray = JSON.parse(allEntriesArrayLS)
-            allEntriesArray.splice(i, 1)
-            localStorage.setItem("activity", JSON.stringify(allEntriesArray))
-        }
-    }
-}*/
-
-/**
- * Removes the clicked button's parent div from page and corresponding object from localStorage
- * @param {MouseEvent} event - click event
- */
 function deleteElement(event) {
-    const allElementButtons = document.querySelectorAll(".element-button")
+    const allTaskButtons = document.querySelectorAll(".element-button")
 
-    for (let i = 0; i < allElementButtons.length; i++) {
-        if (event.target === allElementButtons[i]) {
+    for (let i = 0; i < allTaskButtons.length; i++) {
+        if (event.target === allTaskButtons[i]) {
             const container = document.querySelector("#container")
-            const elementIndex = Math.ceil((i / 2) - 1)
-            container.removeChild(allElementButtons[i].parentElement)
+            const elementIndex = Math.ceil((i / 2) - 0.5)
+            container.removeChild(allTaskButtons[i].parentElement)
 
-            const allEntriesArrayLS = localStorage.getItem("activity");
-            const allEntriesArray = JSON.parse(allEntriesArrayLS)
-            const removedTask = allEntriesArray[elementIndex]
-            allEntriesArray.splice(elementIndex, 1)
-            localStorage.setItem("activity", JSON.stringify(allEntriesArray))
+            const allTasksLS = localStorage.getItem("activity");
+            const allTasks = JSON.parse(allTasksLS)
+            const removedTask = allTasks[elementIndex]
+            console.log("all tasks: " + allTasks)
+            console.log(elementIndex)
+            console.log(i)
+            console.log("element" + allTasks[elementIndex])
+            allTasks.splice(elementIndex, 1)
+            localStorage.setItem("activity", JSON.stringify(allTasks))
 
             if (event.target.classList.contains("complete-button")) {
                 saveCompletedElement(removedTask)
@@ -212,13 +183,11 @@ function deleteElement(event) {
  * @param {Object} completedTask 
  */
 function saveCompletedElement(completedTask) {
-    console.log("completed task:" + completedTask)
     const allCompletedTasks = []
 
     if (!localStorage.getItem("completedTasks")) {
         allCompletedTasks.push(completedTask)
         localStorage.setItem("completedTasks", JSON.stringify(allCompletedTasks))
-        console.log("no")
     }
     else {
         const oldTasksLS = localStorage.getItem("completedTasks")
