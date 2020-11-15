@@ -1,0 +1,84 @@
+.flex {
+    display: flex;
+    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;  /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+}
+
+.column {
+    flex-direction: column;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-space-between {
+    justify-content: space-between;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.align-start {
+    align-items: flex-start;
+}
+
+.grid {
+    display: grid;
+}
+
+.weight-normal {
+    font-weight: 300;
+}
+
+.weight-semibold {
+    font-weight: 500;
+}
+
+.weight-bold {
+    font-weight: 600;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.align-start {
+    align-items: flex-start;
+}
+
+.align-self-right {
+    align-self: flex-end;
+}
+
+.align-end {
+    align-items: flex-end;
+}
+
+.scroll-lock {
+    overflow-y: scroll;
+    position: fixed;
+}
+
+.active {
+    color: #878787!important;
+}

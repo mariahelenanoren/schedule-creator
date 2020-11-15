@@ -27,12 +27,12 @@ function createDocumentElements(object) {
     const ul = document.createElement("ul");
 
     const deleteButton = document.createElement("button");
-    deleteButton.innerHTML = "Remove";
-    deleteButton.setAttribute("class", "element-button delete-button");
+    deleteButton.innerHTML = "minimize";
+    deleteButton.setAttribute("class", "element-button delete-button material-icons");
 
     const completeButton = document.createElement("button");
-    completeButton.innerHTML = "Complete";
-    completeButton.setAttribute("class", "element-button complete-button");
+    completeButton.innerHTML = "done";
+    completeButton.setAttribute("class", "element-button complete-button material-icons");
 
     container.append(div);
     div.append(ul);

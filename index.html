@@ -4,38 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>todo</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reusable-classes.css">
 
     <script src="./script.js"></script>
 </head>
 <body>
+    <main>
 
-    <button id="new-task">New task</button>
+        <button class="new-task" id="new-task">New task</button>
 
-    <form id="task-form" style="display: none;">
-        <div class="task">
-            <label for="task">Task name</label>
-            <input type="text" name="task" id="task"/>
-        </div>
+        <form id="task-form" style="display: none;">
+            <div class="task">
+                <label for="task">Task name</label>
+                <input type="text" name="task" id="task"/>
+            </div>
 
-        <div class="description">
-            <label for="description">Description</label>
-            <input type="text" name="description" id="description">
-        </div>
+            <div class="description">
+                <label for="description">Description</label>
+                <input type="text" name="description" id="description">
+            </div>
 
-        <div class="location">
-            <label for="location">Location</label>
-            <input type="text" name="location" id="location">
+            <div class="location">
+                <label for="location">Location</label>
+                <input type="text" name="location" id="location">
+            </div>
+            
+            <div class="time">
+                <label for="time">Description</label>
+                <input type="datetime-local" name="time" id="time"/>
+            </div>
+            
+            <label for="submit"></label>
+            <button id="submit" type="submit">Create a new activity</button>
+        </form>
+        <div class="container grid" id="container"></div>
+    </main>
+
+    <div class="menu flex align-center">
+        <div class="menu-inner flex row align-center justify-space-between">
+            <h1>todo</h1>
+            <nav class="flex align-center">
+                <span class="material-icons active">
+                    event_available
+                </span>
+                <span class="material-icons">
+                    event_note
+                </span>
+            </nav>
         </div>
-        
-        <div class="time">
-            <label for="time">Description</label>
-            <input type="datetime-local" name="time" id="time"/>
-        </div>
-        
-        <label for="submit"></label>
-        <button id="submit" type="submit">Create a new activity</button>
-    </form>
-    <div id="container"></div>
-    
+    </div>
 </body>
 </html>

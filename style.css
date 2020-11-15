@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Inter', Helvetica, Arial, Helvetica, sans-serif;
+}
+
+body {   
+    background: rgba(255,246,235,1);
+    background: -moz-linear-gradient(top, rgba(255,246,235,1) 0%, rgba(255,246,235,1) 25%, rgba(177,241,218,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(255,246,235,1) 0%, rgba(255,246,235,1) 25%, rgba(177,241,218,1) 100%);
+    background: -o-linear-gradient(top, rgba(255,246,235,1) 0%, rgba(255,246,235,1) 25%, rgba(177,241,218,1) 100%);
+    background: -ms-linear-gradient(top, rgba(255,246,235,1) 0%, rgba(255,246,235,1) 25%, rgba(177,241,218,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,246,235,1) 0%, rgba(255,246,235,1) 25%, rgba(177,241,218,1) 100%);
+}
+
+body p {
+    color: #1e1e1e;
+}
+
+main {
+    height: calc(100% - 5rem);
+    padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.new-task {
+    padding: 1.2rem 2rem;
+    border: none;
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
+    color: white;
+    background-color: #00CEA9;
+}
+
+.container {
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-template-rows: auto;
+    column-gap: 1.5rem;
+    row-gap: 1.5rem;
+}
+
+.container div {
+    display: grid;
+    grid-template-columns: 1fr 3rem;
+    grid-template-rows: 2rem 1fr 2rem;
+    grid-template-areas: 
+        "ul complete"
+        "ul ."
+        "ul delete"
+    ;
+    border-radius: 0.5rem;
+    background-color: white;
+}
+
+.container ul {
+    list-style: none;
+    margin: 1rem;
+    padding: 0;
+    grid-area: ul;
+}
+
+.container li:nth-child(1) {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.container li {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.complete-button {
+    border: none;
+    border-radius: 0 0.5rem 0 0;
+    color: white;
+    background-color: #00CEA9;
+    grid-area: complete;
+}
+
+.delete-button {
+    border: none;
+    color: #1e1e1e;
+    background-color: transparent;
+    grid-area: delete;
+}
+
+h1 {
+    font-size: 1.4rem;
+    color: #1e1e1e;
+}
+
+.menu {
+    height: 5rem;
+    width: 100%;
+    background-color: white;
+}
+
+.menu-inner {
+    width: 100%;
+    padding: 0 1.5rem;
+}
+
+.menu-inner span {
+    font-size: 3rem;
+    margin-left: 1rem;
+    color: #1e1e1e;
+}

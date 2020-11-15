@@ -4,12 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>todo</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reusable-classes.css">
 
     <script src="./completed-tasks.js"></script>
 </head>
 <body>
-
-    <div id="container"></div>
+    <main>
+        <div class="container" id="container"></div>
+    </main>
     
+    <div class="menu flex align-center">
+        <div class="menu-inner flex row align-center justify-space-between">
+            <h1>todo</h1>
+            <nav class="flex align-center">
+                <span class="material-icons">
+                    event_available
+                </span>
+                <span class="material-icons active">
+                    event_note
+                </span>
+            </nav>
+        </div>
+    </div>
 </body>
 </html>
