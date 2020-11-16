@@ -10,43 +10,48 @@
       rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tablet-small.css" media="(min-width: 450px)">
+    <link rel="stylesheet" href="tablet.css" media="(min-width: 768px)">
     <link rel="stylesheet" href="reusable-classes.css">
 
     <script src="./script.js"></script>
 </head>
 <body>
-    <main>
+    <main class="flex column">
 
         <div class="top-inner flex row align-center justify-space-between">
             <p></p>
-            <button class="new-task" id="new-task">New task</button>
+            <button class="new-task primary-background" id="new-task">New task</button>
+        </div>
+        <div class="form-container">
+            <form class="task-form flex column" id="task-form">
+                <div class="task flex column">
+                    <label for="task">Task *</label>
+                    <input type="text" name="task" id="task"/>
+                </div>
+
+                <div class="description flex column">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" id="description">
+                </div>
+
+                <div class="form-inner justify-space-between flex">
+                    <div class="location flex column">
+                        <label for="location">Where</label>
+                        <input type="text" name="location" id="location">
+                    </div>
+                    
+                    <div class="time flex column">
+                        <label for="time">When</label>
+                        <input type="text" name="time" id="time"/>
+                    </div>
+                </div>
+
+                <label for="submit"></label>
+                <button class="submit primary-background flex column center" id="submit" type="submit">Create a new task</button>
+            </form>
         </div>
 
-        <form class="task-form column" id="task-form">
-            <h2>Create new task</h2>
-            <div class="task flex column">
-                <label for="task">Task name</label>
-                <input type="text" name="task" id="task"/>
-            </div>
-
-            <div class="description flex column">
-                <label for="description">Description</label>
-                <input type="text" name="description" id="description">
-            </div>
-
-            <div class="location flex column">
-                <label for="location">Location</label>
-                <input type="text" name="location" id="location">
-            </div>
-            
-            <div class="time flex column">
-                <label for="time">Time</label>
-                <input type="datetime-local" name="time" id="time"/>
-            </div>
-            
-            <label for="submit"></label>
-            <button class="submit flex column center" id="submit" type="submit">Create a new task</button>
-        </form>
         <div class="container grid" id="container"></div>
     </main>
 
@@ -54,12 +59,18 @@
         <div class="menu-inner flex row align-center justify-space-between">
             <h1>todo</h1>
             <nav class="flex align-center">
-                <span class="material-icons active">
-                    event_available
-                </span>
-                <span class="material-icons">
-                    event_note
-                </span>
+                <div class="flex row align-center deactive">
+                    <h3>Completed tasks</h3>
+                    <span class="material-icons">
+                        event_available
+                    </span>
+                </div>
+                <div class="flex row align-center">
+                    <h3>Current tasks</h3>
+                    <span class="material-icons">
+                        event_note
+                    </span>
+                </div>
             </nav>
         </div>
     </div>

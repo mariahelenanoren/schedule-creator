@@ -1,0 +1,16 @@
+/* TABLET */
+/* min-width: 450px */
+
+.form-inner {
+    flex-direction: row;
+    width: 100%;
+}
+
+.form-inner div {
+    width: 47.5%!important;
+}
+
+.form-container {
+    padding: 5rem 3rem 3rem 3rem;
+    left: unset;
+}

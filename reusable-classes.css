@@ -70,6 +70,10 @@
     align-self: flex-end;
 }
 
+.align-self-center {
+    align-self: center;
+}
+
 .align-end {
     align-items: flex-end;
 }
@@ -79,6 +83,14 @@
     position: fixed;
 }
 
-.active {
+.deactive {
     color: #878787!important;
+}
+
+.primary-background {
+    background-color: #00c291;
+}
+
+.primary-color {
+    color: #00c291;
 }

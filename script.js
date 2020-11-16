@@ -12,19 +12,19 @@ function startFunctions() {
 function setEventListeners() {
     const newTaskButton = document.querySelector("#new-task"); 
     const submitButton = document.querySelector("#submit");
-    const taskInput = document.querySelector("#task")
+    const taskInput = document.querySelector("#task");
 
     newTaskButton.addEventListener("click", openAndCloseTaskForm);
     submitButton.addEventListener("click", function(event) {
+        /* Prevents window from reloading on submit */
+        event.preventDefault()
         if (!taskInput.value) {
             showAlert();
         }
         else {
             getInputValues();
-            openAndCloseactivityForm();
+            openAndCloseTaskForm();
         }
-        /* Prevents window from reloading on submit */
-        event.preventDefault() 
     });
 }
 
@@ -36,8 +36,8 @@ function showAlert() {
     const taskAlert = document.createElement("p")
     taskAlert.innerHTML = "Please fill in a task"
     taskAlert.setAttribute("id", "taskAlert")
-    const taskContainer = document.querySelector(".subject")
-    const taskInput = document.querySelector("#subject")
+    const taskContainer = document.querySelector(".task")
+    const taskInput = document.querySelector("#task")
 
     if (!document.querySelector("#taskAlert") && !taskInput.value) {
         taskContainer.appendChild(taskAlert)
@@ -48,14 +48,13 @@ function showAlert() {
 }
 
 function openAndCloseTaskForm() {
-    const taskForm = document.querySelector("#task-form");
-    const taskContainer = document.querySelector("#container")
+    const taskForm = document.querySelector(".form-container");
+    const newTaskButton = document.querySelector("#new-task");
+
     if (taskForm.style.display == "none" || taskForm.style.display == "") {
         taskForm.style.display = "flex";
-        taskContainer.style.display = "none";
     } else {
         taskForm.style.display = "none";
-        taskContainer.style.display = "grid";
     }
 
 }

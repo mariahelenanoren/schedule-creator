@@ -21,10 +21,7 @@ body {
 }
 
 body button:focus {
-    outline: 0.1rem solid #1e1e1e;
-}
-body input:focus {
-    outline: 0.1rem solid #1e1e1e;
+    outline: none;
 }
 
 main {
@@ -35,23 +32,21 @@ main {
 
 .new-task {
     height: fit-content;
-    padding: 1rem 1.5rem;
+    padding: 0.8rem 1.3rem;
     border: none;
-    border-radius: 0.8rem;
-    font-size: 1.3rem;
+    border-radius: 0.3rem;
+    font-size: 1rem;
     font-weight: 600;
     white-space: nowrap;
     color: white;
-    background-color: #00CEA9;
-}
-
-.top-inner {
+    transition: background-color 0.25s ease;
     z-index: 100;
 }
 
 .top-inner p {
     padding: 0 1rem 0 0;
-    font-size: 1rem;
+    margin: 0;
+    font-size: 0.8rem;
     font-weight: 500;
 }
 
@@ -60,17 +55,17 @@ h2 {
 }
 
 .container {
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
     grid-template-rows: auto;
     column-gap: 1.5rem;
-    row-gap: 1.5rem;
-    margin: 2rem 0;
+    row-gap: 1rem;
+    margin: 1.5rem 0;
 }
 
 .container div {
     display: grid;
-    grid-template-columns: 1fr 3.5rem;
-    grid-template-rows: 2.5rem 1fr 2.5rem;
+    grid-template-columns: 1fr 2.5rem;
+    grid-template-rows: 2rem 1fr 2rem;
     grid-template-areas: 
         "ul complete"
         "ul ."
@@ -81,52 +76,54 @@ h2 {
 }
 
 .container ul {
+    display: flex;
+    flex-direction: column;
     list-style: none;
-    margin: 0.8rem 1.5rem;
+    margin: 1rem;
     padding: 0;
     grid-area: ul;
 }
 
 .container li:nth-child(1) {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-weight: 700;
 }
 
 .container li:nth-child(3)::before {
     font-family: "Material Icons";
-    font-size: 1.5rem;
+    font-size: 1rem;
     content: "location_on";
     margin-right: 0.5rem;
-    color: #00CEA9;
+    color:  #00c291;
 }
 
 .container li:nth-child(4)::before {
     font-family: "Material Icons";
-    font-size: 1.5rem;
+    font-size: 1rem;
     content: "notifications_on";
     margin-right: 0.5rem;
-    color: #00CEA9;
+    color:  #00c291;
 }
 
 .container li {
     display: flex;
     align-items: center;
-    margin: 0.6rem 0;
-    font-size: 1rem;
+    margin: 0.2rem 0;
+    font-size: 0.8rem;
     font-weight: 500;
     color: #1e1e1e;
 }
 
 .element-button {
     margin: 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .complete-button {
     border: none;
     border-radius: 0 0.5rem 0 0;
     color: white;
-    background-color: #00CEA9;
+    background-color:  #00c291;
     grid-area: complete;
 }
 
@@ -139,14 +136,24 @@ h2 {
 }
 
 h1 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: #1e1e1e;
 }
 
 .menu {
+    position: relative;
     height: 5rem;
     width: 100%;
     background-color: white;
+    z-index: 2000!important;
+    background-color: rgb(255, 255, 255);
+    -webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.06);
+    -moz-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.06);
+    box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.06);
+}
+
+nav div {
+    margin-left: 1.5rem;
 }
 
 .menu-inner {
@@ -154,43 +161,79 @@ h1 {
     padding: 0 1.5rem;
 }
 
+.menu-inner h3 {
+    display: none;
+    margin-right: 1rem;
+}
+
 .menu-inner span {
-    font-size: 3rem;
-    margin-left: 1.5rem;
-    color: #1e1e1e;
+    font-size: 2.5rem;
 }
 
 /* ---- FORM ---- */
 
-.task-form {
+.form-container {
+    position: absolute;
     display: none;
+    padding: 5rem 1.5rem 1.5rem 1.5rem;
+    top: 0;
+    bottom: 5rem;
+    right: 0;
+    left: 0;
+    max-width: 100%;
+    background-color: rgb(255, 255, 255);
+    -webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.06);
+    -moz-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.06);
+    box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.06);
 }
 
-.task-form h2 {
-    margin: 2rem 0;
+.task-form {
+    width: 100%;
+    align-self: left;
+    position: relative;
+}
+
+.task-form div {
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+.task-form div p {
+    font-size: 0.8rem;
+    color: #1e1e1e;
+    font-style: italic;
 }
 
 .task-form input {
-    margin: 0.5rem 0 1rem 0;
-    height: 2.5rem;
+    height: 2rem;
     border: none;
+    border-radius: 0.3rem;
     font-size: 1.2rem;
     padding: 0 0.5rem;
+    margin-top: 0.5rem;
+    background-color: rgb(243, 243, 243);
 }
 
 .task-form label {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     font-weight: 500;
 }
 
 .submit {
     height: fit-content;
-    padding: 1rem 1.5rem;
+    padding: 0.8rem 1.3rem;
+    margin-top: 0.5rem;
+    width: 100%;
     border: none;
-    border-radius: 0.8rem;
-    font-size: 1.3rem;
+    border-radius: 0.3rem;
+    font-size: 1rem;
     font-weight: 600;
     white-space: nowrap;
-    color: white;
-    background-color: #00CEA9;
+    color: rgb(255, 255, 255);
+    transition: background-color 0.25s ease;
+}
+
+.form-inner {
+    flex-direction: column;
+    margin: 0!important;
 }
