@@ -14,7 +14,7 @@ function setEventListeners() {
     const submitButton = document.querySelector("#submit");
     const taskInput = document.querySelector("#task")
 
-    newTaskButton.addEventListener("click", openAndCloseactivityForm);
+    newTaskButton.addEventListener("click", openAndCloseTaskForm);
     submitButton.addEventListener("click", function(event) {
         if (!taskInput.value) {
             showAlert();
@@ -47,12 +47,15 @@ function showAlert() {
     }
 }
 
-function openAndCloseactivityForm() {
-    const activityForm = document.querySelector("#task-form");
-    if (activityForm.style.display == "none") {
-        activityForm.style.display = "unset";
+function openAndCloseTaskForm() {
+    const taskForm = document.querySelector("#task-form");
+    const taskContainer = document.querySelector("#container")
+    if (taskForm.style.display == "none" || taskForm.style.display == "") {
+        taskForm.style.display = "flex";
+        taskContainer.style.display = "none";
     } else {
-        activityForm.style.display = "none"
+        taskForm.style.display = "none";
+        taskContainer.style.display = "grid";
     }
 
 }

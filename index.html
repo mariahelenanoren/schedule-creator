@@ -18,33 +18,34 @@
     <main>
 
         <div class="top-inner flex row align-center justify-space-between">
-            <p>Time</p>
+            <p></p>
             <button class="new-task" id="new-task">New task</button>
         </div>
 
-        <form id="task-form" style="display: none;">
-            <div class="task">
+        <form class="task-form column" id="task-form">
+            <h2>Create new task</h2>
+            <div class="task flex column">
                 <label for="task">Task name</label>
                 <input type="text" name="task" id="task"/>
             </div>
 
-            <div class="description">
+            <div class="description flex column">
                 <label for="description">Description</label>
                 <input type="text" name="description" id="description">
             </div>
 
-            <div class="location">
+            <div class="location flex column">
                 <label for="location">Location</label>
                 <input type="text" name="location" id="location">
             </div>
             
-            <div class="time">
-                <label for="time">Description</label>
+            <div class="time flex column">
+                <label for="time">Time</label>
                 <input type="datetime-local" name="time" id="time"/>
             </div>
             
             <label for="submit"></label>
-            <button id="submit" type="submit">Create a new activity</button>
+            <button class="submit flex column center" id="submit" type="submit">Create a new task</button>
         </form>
         <div class="container grid" id="container"></div>
     </main>
