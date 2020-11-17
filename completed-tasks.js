@@ -29,15 +29,11 @@ function createDocumentElements(object) {
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML = "minimize";
     deleteButton.setAttribute("class", "element-button delete-button material-icons");
-
-    const completeButton = document.createElement("button");
-    completeButton.innerHTML = "done";
-    completeButton.setAttribute("class", "element-button complete-button material-icons");
+    deleteButton.addEventListener("click", deleteElement, deleteButton)
 
     container.append(div);
     div.append(ul);
     div.append(deleteButton);
-    div.append(completeButton);
     
     for (value of Object.values(object)) {
         if (value) {
@@ -45,5 +41,57 @@ function createDocumentElements(object) {
             li.innerHTML = value;
             ul.append(li)
         }
+    }
+}
+
+/**
+ * Removes the clicked button's parent div from page and corresponding object from localStorage
+ * @param {MouseEvent} event - click event
+ */
+function deleteElement(event) {
+    const allTaskButtons = document.querySelectorAll(".element-button")
+
+    for (let i = 0; i < allTaskButtons.length; i++) {
+        if (event.target === allTaskButtons[i]) {
+            const container = document.querySelector("#container")
+            const elementIndex = Math.ceil((i / 2) - 0.5)
+            container.removeChild(allTaskButtons[i].parentElement)
+
+            const allTasksLS = localStorage.getItem("completed-tasks");
+            const allTasks = JSON.parse(allTasksLS)
+            const removedTask = allTasks[elementIndex]
+            console.log("all tasks: " + allTasks)
+            console.log(elementIndex)
+            console.log(i)
+            console.log("element" + allTasks[elementIndex])
+            allTasks.splice(elementIndex, 1)
+            localStorage.setItem("completed-tasks", JSON.stringify(allTasks))
+
+            if (event.target.classList.contains("complete-button")) {
+                saveCompletedElement(removedTask)
+            }
+        }
+    }
+}
+
+/**
+ * Saves the completed tasks in an array in localStorage
+ * @param {Object} completedTask 
+ */
+function saveCompletedElement(completedTask) {
+    const allCompletedTasks = []
+
+    if (!localStorage.getItem("completed-tasks")) {
+        allCompletedTasks.push(completedTask)
+        localStorage.setItem("completed-tasks", JSON.stringify(allCompletedTasks))
+    }
+    else {
+        const oldTasksLS = localStorage.getItem("completed-tasks")
+        const oldTasks = JSON.parse(oldTasksLS)
+        for (each of oldTasks) {
+            allCompletedTasks.push(each)
+        }
+        allCompletedTasks.push(completedTask)
+        localStorage.setItem("completed-tasks", JSON.stringify(allCompletedTasks))
     }
 }
