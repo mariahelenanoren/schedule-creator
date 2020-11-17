@@ -1,0 +1,14 @@
+/* CSS CLASSES FOR COMPLETED TASKS PAGE */
+
+.top-inner {
+    height: 3rem;
+}
+
+.delete-button {
+    display: flex;
+    border: none;
+    border-radius: 0 0 0.5rem 0;
+    color: #00c291;
+    background-color: transparent;
+    grid-area: delete;
+}

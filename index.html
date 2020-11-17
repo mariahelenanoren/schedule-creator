@@ -9,10 +9,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="tablet-small.css" media="(min-width: 450px)">
-    <link rel="stylesheet" href="tablet.css" media="(min-width: 768px)">
-    <link rel="stylesheet" href="reusable-classes.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./tablet-small.css" media="(min-width: 450px)">
+    <link rel="stylesheet" href="./tablet.css" media="(min-width: 768px)">
+    <link rel="stylesheet" href="./reusable-classes.css">
 
     <script src="./script.js"></script>
 </head>
@@ -55,22 +56,26 @@
         <div class="container grid" id="container"></div>
     </main>
 
-    <div class="menu flex align-center">
+    <div class="menu flex center">
         <div class="menu-inner flex row align-center justify-space-between">
             <h1>todo</h1>
             <nav class="flex align-center">
-                <div class="flex row align-center deactive">
-                    <h3>Completed tasks</h3>
-                    <span class="material-icons">
-                        event_available
-                    </span>
-                </div>
-                <div class="flex row align-center">
-                    <h3>Current tasks</h3>
-                    <span class="material-icons">
-                        event_note
-                    </span>
-                </div>
+                <a href="./completed-tasks.html">
+                    <div class="flex row align-center deactive">
+                        <h3>Completed tasks</h3>
+                        <span class="material-icons">
+                            event_available
+                        </span>
+                    </div>
+                </a>
+                <a href="./index.html">
+                    <div class="flex row align-center">
+                        <h3>Current tasks</h3>
+                        <span class="material-icons">
+                            event_note
+                        </span>
+                    </div>
+                </a>
             </nav>
         </div>
     </div>

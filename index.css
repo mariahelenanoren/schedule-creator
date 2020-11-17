@@ -1,0 +1,17 @@
+/* CSS CLASSES FOR INDEX PAGE */
+
+.complete-button {
+    border: none;
+    border-radius: 0 0.5rem 0 0;
+    color: white;
+    background-color:  #00c291;
+    grid-area: complete;
+}
+
+.delete-button {
+    display: flex;
+    border: none;
+    color: #1e1e1e;
+    background-color: transparent;
+    grid-area: delete;
+}

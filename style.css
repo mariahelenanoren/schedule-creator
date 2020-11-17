@@ -24,10 +24,17 @@ body button:focus {
     outline: none;
 }
 
+body a {
+    text-decoration: none;
+    color: inherit;
+}
+
 main {
     height: calc(100% - 5rem);
     padding: 1.5rem 1.5rem 0 1.5rem;
     overflow-y: scroll;
+    max-width: 130rem;
+    margin: auto;
 }
 
 .new-task {
@@ -43,15 +50,15 @@ main {
     z-index: 100;
 }
 
+.top-inner {
+    height: 3rem;
+}
+
 .top-inner p {
     padding: 0 1rem 0 0;
     margin: 0;
     font-size: 0.8rem;
     font-weight: 500;
-}
-
-h2 {
-    color: #1e1e1e;
 }
 
 .container {
@@ -119,22 +126,6 @@ h2 {
     font-size: 1.5rem;
 }
 
-.complete-button {
-    border: none;
-    border-radius: 0 0.5rem 0 0;
-    color: white;
-    background-color:  #00c291;
-    grid-area: complete;
-}
-
-.delete-button {
-    display: flex;
-    border: none;
-    color: #1e1e1e;
-    background-color: transparent;
-    grid-area: delete;
-}
-
 h1 {
     font-size: 1.2rem;
     color: #1e1e1e;
@@ -159,9 +150,11 @@ nav div {
 .menu-inner {
     width: 100%;
     padding: 0 1.5rem;
+    max-width: 130rem;
 }
 
 .menu-inner h3 {
+    font-size: 1rem;
     display: none;
     margin-right: 1rem;
 }

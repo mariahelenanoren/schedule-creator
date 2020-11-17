@@ -13,4 +13,6 @@
 .form-container {
     padding: 5rem 3rem 3rem 3rem;
     left: unset;
+    max-width: 100%;
+    width: 30rem;
 }

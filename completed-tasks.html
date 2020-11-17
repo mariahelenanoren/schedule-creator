@@ -9,27 +9,42 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="reusable-classes.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./completed-tasks.css">
+    <link rel="stylesheet" href="./tablet-small.css" media="(min-width: 450px)">
+    <link rel="stylesheet" href="./tablet.css" media="(min-width: 768px)">
+    <link rel="stylesheet" href="./reusable-classes.css">
 
     <script src="./completed-tasks.js"></script>
 </head>
 <body>
     <main>
-    <h2>Completed Tasks</h2>
+    <div class="top-inner flex align-center">
+        <h2 class=>Completed tasks</h2>
+    </div>
         <div class="container grid" id="container"></div>
     </main>
     
-    <div class="menu flex align-center">
+    <div class="menu flex center">
         <div class="menu-inner flex row align-center justify-space-between">
             <h1>todo</h1>
             <nav class="flex align-center">
-                <span class="material-icons">
-                    event_available
-                </span>
-                <span class="material-icons active">
-                    event_note
-                </span>
+                <a href="./completed-tasks.html">
+                    <div class="flex row align-center">
+                        <h3>Completed tasks</h3>
+                        <span class="material-icons">
+                            event_available
+                        </span>
+                    </div>
+                </a>
+                <a href="./index.html">
+                    <div class="flex row align-center deactive">
+                        <h3>Current tasks</h3>
+                        <span class="material-icons">
+                            event_note
+                        </span>
+                    </div>
+                </a>
             </nav>
         </div>
     </div>
