@@ -24,6 +24,7 @@ function setEventListeners() {
         else {
             getInputValues();
             openAndCloseTaskForm();
+            emptyInputValues();
         }
     });
 }
@@ -44,6 +45,13 @@ function showAlert() {
     } 
     else if (document.querySelector("#taskAlert") && taskInput.value) {
         removeElement(taskAlert)
+    }
+}
+
+function emptyInputValues() {
+    const inputs = document.querySelectorAll("form input")
+    for (input in inputs) {
+        inputs[input].value = "";
     }
 }
 
